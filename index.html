@@ -6,7 +6,30 @@
   <title>SPIRE</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    sg" class="error"></p>
+    #login-screen {
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: #141414; display: flex; align-items: center; justify-content: center;
+      z-index: 9999; flex-direction: column; color: white;
+    }
+    #login-screen input {
+      padding: 15px; width: 280px; font-size: 1.1rem; background: #222;
+      border: 1px solid #444; color: white; border-radius: 4px; margin-bottom: 15px;
+    }
+    #login-screen button {
+      padding: 12px 40px; background: #e50914; color: white; border: none;
+      border-radius: 4px; font-size: 1.1rem; cursor: pointer;
+    }
+    .error { color: #ff4444; margin-top: 10px; }
+  </style>
+</head>
+<body>
+
+  <!-- Password Screen -->
+  <div id="login-screen">
+    <h1 style="margin-bottom:30px;">enjoy 👍</h1>
+    <input type="password" id="passwordInput" placeholder="Enter password" autocomplete="off">
+    <button onclick="checkPassword()">Enter</button>
+    <p id="errorMsg" class="error"></p>
   </div>
 
   <!-- Main Site -->
