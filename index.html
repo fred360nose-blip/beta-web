@@ -3,76 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SPIRE</title>
+  <title>fredflix</title>
   <link rel="stylesheet" href="style.css">
-  <style>
-    #login-screen {
-      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-      background: #141414; display: flex; align-items: center; justify-content: center;
-      z-index: 9999; flex-direction: column; color: white;
-    }
-    #login-screen input {
-      padding: 15px; width: 280px; font-size: 1.1rem; background: #222;
-      border: 1px solid #444; color: white; border-radius: 4px; margin-bottom: 15px;
-    }
-    #login-screen button {
-      padding: 12px 40px; background: #e50914; color: white; border: none;
-      border-radius: 4px; font-size: 1.1rem; cursor: pointer;
-    }
-    .error { color: #ff4444; margin-top: 10px; }
-  </style>
 </head>
 <body>
 
-  <!-- Password Screen -->
-  <div id="login-screen">
-    <h1 style="margin-bottom:30px;">enjoy 👍</h1>
-    <input type="password" id="passwordInput" placeholder="Enter password" autocomplete="off">
-    <button onclick="checkPassword()">Enter</button>
-    <p id="errorMsg" class="error"></p>
+  <!-- Header -->
+  <div class="header">
+    <div class="logo">fredflix</div>
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Search movies & shows...">
+    </div>
   </div>
 
-  <!-- Main Site -->
-  <div id="main-site" style="display:none;">
-    <div class="header">
-      <div class="logo" onclick="scrollToTop()">fredflix</div>
-      <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Search movies and TV shows..." autocomplete="off">
-      </div>
-    </div>
-    <div class="hero">
-      <div class="hero-content">
-        <h1>for educational purposes</h1>
-        <p>bio of website didnt know what to write</p>
-        <button onclick="scrollToContent()" class="btn-primary">Browse All</button>
-      </div>
-    </div>
-    <div class="content" id="mainContent"></div>
+  <!-- Main Content -->
+  <div id="mainContent" class="content">
+    <!-- Content loaded by script.js -->
   </div>
 
   <script src="script.js"></script>
-
-  <!-- Vercel Web Analytics - Added here -->
-  <script>
-    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-  </script>
-  <script defer src="/_vercel/insights/script.js"></script>
-
-  <script>
-    function checkPassword() {
-      const input = document.getElementById('passwordInput').value;
-      const errorMsg = document.getElementById('errorMsg');
-      if (input === "ilovefred") {
-        document.getElementById('login-screen').style.display = 'none';
-        document.getElementById('main-site').style.display = 'block';
-      } else {
-        errorMsg.textContent = "Incorrect password. Try again.";
-        document.getElementById('passwordInput').value = '';
-      }
-    }
-    document.getElementById('passwordInput').addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') checkPassword();
-    });
-  </script>
 </body>
 </html>
