@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SPIRE</title>
+  <title>fredflix</title>
   <link rel="stylesheet" href="style.css">
   <style>
     .blocked-page {
@@ -25,13 +25,12 @@
     }
 
     .briefcase-img {
-      width: 92px;           /* Fixed width */
-      height: auto;          /* Important: keeps original aspect ratio */
+      width: 92px;
+      height: auto;
       flex-shrink: 0;
       cursor: pointer;
       user-select: none;
       margin-top: 8px;
-      filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
     }
 
     .content-area {
@@ -92,61 +91,4 @@
   <div class="blocked-page" id="blockedScreen">
     <div class="blocked-container">
       <!-- Briefcase Image -->
-      <img src="briefcase.png" alt="Briefcase" class="briefcase-img" onclick="enterSite()">
-
-      <!-- Text Content -->
-      <div class="content-area">
-        <div class="blocked-title">This content is blocked by your organisation</div>
-        <div class="hosted">Hosted by https://beta-web-beta.vercel.app/</div>
-        
-        <div class="blocked-text">
-          For your protection, your organisation is not allowing you to access<br>
-          the resource or content hosted by www.joeisjewish.xyz<br><br>
-          To learn more about why you're seeing this message or to get in<br>
-          touch with your administrator, <span class="support-link">visit the support page</span>.
-        </div>
-
-        <button class="btn-close" onclick="closePage()">Close page</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Main Fredflix Site -->
-  <div id="mainSite" style="display: none;">
-    <div class="header">
-      <div class="logo" onclick="window.location.reload()">fredflix</div>
-      <div class="search-container">
-        <input type="text" id="searchInput" placeholder="Search movies & shows...">
-      </div>
-    </div>
-
-    <div id="mainContent" class="content"></div>
-  </div>
-
-  <script src="script.js"></script>
-
-  <script>
-    function enterSite() {
-      document.getElementById('blockedScreen').style.display = 'none';
-      document.getElementById('mainSite').style.display = 'block';
-      
-      if (typeof loadInitialContent === 'function') {
-        loadInitialContent();
-      }
-    }
-
-    function closePage() {
-      window.close();
-      document.body.innerHTML = `
-        <div style="text-align:center; margin-top:150px; font-family:Arial,sans-serif; color:#333;">
-          <h2>Page closed</h2>
-          <p>You can now close this tab.</p>
-        </div>`;
-    }
-
-    document.addEventListener('keypress', (e) => {
-      if (e.key === "Enter") enterSite();
-    });
-  </script>
-</body>
-</html>
+      <img src="briefcase.png" alt="Briefcase
