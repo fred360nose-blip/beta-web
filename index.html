@@ -6,12 +6,6 @@
   <title>fredflix</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
     .blocked-page {
       background: #ffffff;
       color: #000000;
@@ -20,88 +14,102 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      text-align: center;
       padding: 20px;
     }
 
     .blocked-container {
-      max-width: 620px;
+      max-width: 680px;
+      display: flex;
+      gap: 30px;
+      align-items: flex-start;
     }
 
-    .briefcase {
-      font-size: 90px;
-      margin-bottom: 25px;
+    .briefcase-icon {
+      font-size: 85px;
+      flex-shrink: 0;
       cursor: pointer;
       user-select: none;
+      margin-top: 5px;
+    }
+
+    .content-area {
+      text-align: left;
     }
 
     .blocked-title {
-      font-size: 27px;
+      font-size: 28px;
       font-weight: 600;
       margin-bottom: 8px;
-      line-height: 1.2;
+      line-height: 1.1;
     }
 
     .hosted {
-      font-size: 17px;
-      color: #666666;
-      margin-bottom: 35px;
+      font-size: 18px;
+      color: #444444;
+      margin-bottom: 25px;
     }
 
     .blocked-text {
-      font-size: 15.5px;
+      font-size: 15.2px;
       line-height: 1.55;
-      color: #333333;
-      margin-bottom: 40px;
+      color: #222222;
+      margin-bottom: 35px;
+    }
+
+    .support-link {
+      color: #0066cc;
+      text-decoration: underline;
+      cursor: pointer;
     }
 
     .btn-close {
-      background: #f3f3f3;
+      background: #f1f1f1;
       color: #000;
-      border: 1px solid #cccccc;
-      padding: 10px 32px;
+      border: 1px solid #c0c0c0;
+      padding: 9px 28px;
       font-size: 15px;
       cursor: pointer;
-      border-radius: 3px;
+      border-radius: 2px;
     }
 
     .btn-close:hover {
-      background: #e8e8e8;
+      background: #e5e5e5;
     }
 
     .footer {
-      margin-top: 80px;
+      margin-top: 70px;
       font-size: 13.5px;
       color: #666666;
+      text-align: center;
     }
   </style>
 </head>
 <body>
 
-  <!-- Microsoft Defender Style Login Page -->
+  <!-- Microsoft Defender Blocked Page -->
   <div class="blocked-page" id="blockedScreen">
     <div class="blocked-container">
-      <div class="briefcase" onclick="enterSite()">💼</div>
-      
-      <div class="blocked-title">This content is blocked by your organisation</div>
-      <div class="hosted">Hosted by www.joeisjewish.xyz</div>
-      
-      <div class="blocked-text">
-        For your protection, your organisation is not allowing you to access<br>
-        the resource or content hosted by www.joeisjewish.xyz<br><br>
-        To learn more about why you're seeing this message or to get in<br>
-        touch with your administrator, <span style="color:#0066cc; text-decoration:underline; cursor:pointer;">visit the support page</span>.
-      </div>
+      <!-- Briefcase Icon -->
+      <div class="briefcase-icon" onclick="enterSite()">💼</div>
 
-      <button class="btn-close" onclick="closePage()">Close page</button>
+      <!-- Text Content -->
+      <div class="content-area">
+        <div class="blocked-title">This content is blocked by your organisation</div>
+        <div class="hosted">Hosted by www.joeisjewish.xyz</div>
+        
+        <div class="blocked-text">
+          For your protection, your organisation is not allowing you to access<br>
+          the resource or content hosted by www.joeisjewish.xyz<br><br>
+          To learn more about why you're seeing this message or to get in<br>
+          touch with your administrator, <span class="support-link">visit the support page</span>.
+        </div>
 
-      <div class="footer">
-        Microsoft Defender SmartScreen
+        <button class="btn-close" onclick="closePage()">Close page</button>
       </div>
     </div>
   </div>
 
-  <!-- Main Fredflix Website -->
+  <!-- Main Fredflix Site -->
   <div id="mainSite" style="display: none;">
     <div class="header">
       <div class="logo" onclick="window.location.reload()">fredflix</div>
@@ -120,7 +128,6 @@
       document.getElementById('blockedScreen').style.display = 'none';
       document.getElementById('mainSite').style.display = 'block';
       
-      // Load homepage content
       if (typeof loadInitialContent === 'function') {
         loadInitialContent();
       }
@@ -128,21 +135,17 @@
 
     function closePage() {
       window.close();
-      // Fallback message if browser prevents closing
-      if (document.getElementById('mainSite').style.display === 'none') {
-        document.body.innerHTML = `
-          <div style="text-align:center; margin-top:120px; font-family:Arial,sans-serif;">
-            <h2>✅ Page closed</h2>
-            <p>You can now close this browser tab.</p>
-          </div>`;
-      }
+      // Fallback if browser blocks closing
+      document.body.innerHTML = `
+        <div style="text-align:center; margin-top:150px; font-family:Arial,sans-serif; color:#333;">
+          <h2>Page closed</h2>
+          <p>You can now close this tab.</p>
+        </div>`;
     }
 
-    // Allow pressing Enter key to enter site
+    // Press Enter to enter site
     document.addEventListener('keypress', (e) => {
-      if (e.key === "Enter" && document.getElementById('blockedScreen').style.display !== 'none') {
-        enterSite();
-      }
+      if (e.key === "Enter") enterSite();
     });
   </script>
 </body>
