@@ -25,12 +25,13 @@
     }
 
     .briefcase-img {
-      width: 85px;
-      height: 85px;
+      width: 92px;           /* Fixed width */
+      height: auto;          /* Important: keeps original aspect ratio */
       flex-shrink: 0;
       cursor: pointer;
       user-select: none;
       margin-top: 8px;
+      filter: drop-shadow(2px 2px 4px rgba(0,0,0,0.1));
     }
 
     .content-area {
@@ -90,7 +91,7 @@
   <!-- Microsoft Defender Blocked Page -->
   <div class="blocked-page" id="blockedScreen">
     <div class="blocked-container">
-      <!-- Real Briefcase Image -->
+      <!-- Briefcase Image -->
       <img src="briefcase.png" alt="Briefcase" class="briefcase-img" onclick="enterSite()">
 
       <!-- Text Content -->
@@ -143,7 +144,6 @@
         </div>`;
     }
 
-    // Press Enter to enter
     document.addEventListener('keypress', (e) => {
       if (e.key === "Enter") enterSite();
     });
