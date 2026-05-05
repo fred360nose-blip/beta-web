@@ -1,4 +1,4 @@
-/* style.css - Updated with Continue Watching Progress */
+/* style.css - Mobile Friendly Fflix */
 
 * {
   margin: 0;
@@ -8,8 +8,8 @@
 
 body {
   font-family: 'Helvetica Neue', Arial, sans-serif;
-  background-color: #e50914;
-  color: #f59f00;
+  background-color: #141414;
+  color: #ffffff;
   line-height: 1.4;
 }
 
@@ -32,12 +32,18 @@ body {
   background: #141414;
 }
 
+/* Logo - Orange */
 .logo {
   font-size: 1.9rem;
   font-weight: 900;
-  color: #f59f00;
+  color: #ff6600;
   letter-spacing: -2px;
   cursor: pointer;
+}
+
+.logo:hover {
+  color: #ff8533;
+  transition: color 0.2s;
 }
 
 .search-container {
@@ -57,7 +63,7 @@ body {
 }
 
 #searchInput:focus {
-  border-color: #e50914;
+  border-color: #ff6600;
   outline: none;
 }
 
@@ -123,7 +129,7 @@ body {
 
 .progress {
   height: 100%;
-  background: #e50914;
+  background: #ff6600;
   transition: width 0.3s;
 }
 
@@ -142,11 +148,19 @@ body {
 
 .continue-info {
   font-size: 0.85rem;
-  color: #e50914;
+  color: #ff6600;
   margin-top: 4px;
 }
 
-/* Desktop */
+/* No results */
+.no-results {
+  text-align: center;
+  padding: 60px 20px;
+  font-size: 1.3rem;
+  color: #777;
+}
+
+/* Desktop improvements */
 @media (min-width: 768px) {
   .card { flex: 0 0 220px; }
   .poster-container { height: 330px; }
