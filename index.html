@@ -113,7 +113,7 @@
         <button class="close-btn" onclick="closePage()">×</button>
         
         <div class="header">
-            <!-- Briefcase Icon - Now correctly points to your site -->
+            <!-- Briefcase Icon - Fixed -->
             <svg onclick="enterSite()" class="icon" width="48" height="48" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M20 7H4C2.89543 7 2 7.89543 2 9V19C2 20.1046 2.89543 21 4 21H20C21.1046 21 22 20.1046 22 19V9C22 7.89543 21.1046 7 20 7Z" stroke="#212121" stroke-width="1.8" stroke-linejoin="round"/>
                 <path d="M16 7V4C16 2.89543 15.1046 2 14 2H10C8.89543 2 8 2.89543 8 4V7" stroke="#212121" stroke-width="1.8" stroke-linejoin="round"/>
@@ -126,4 +126,36 @@
             </div>
         </div>
         
-       
+        <div class="content">
+            For your protection, your organisation is not allowing you to access<br>
+            the resource or content hosted by juliancampain.xyz<br><br>
+            To learn more about why you're seeing this message or to get in<br>
+            touch with your administrator, <span class="link" onclick="window.open('https://support.microsoft.com/', '_blank')">visit the support page</span>.
+        </div>
+        
+        <div onclick="closePage()" class="button">Close page</div>
+        
+        <div class="footer">
+            Microsoft Defender SmartScreen
+        </div>
+    </div>
+
+    <script>
+        function enterSite() {
+            // Fixed path to your actual website
+            window.location.href = "/beta-web-main/index.html";
+        }
+        
+        function closePage() {
+            window.close();
+            // Fallback
+            document.body.innerHTML = '<div style="background:#000; color:#fff; height:100vh; display:flex; align-items:center; justify-content:center; font-size:2rem;">Page closed.</div>';
+        }
+        
+        // Press ESC to close
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "Escape") closePage();
+        });
+    </script>
+</body>
+</html>
