@@ -3,24 +3,84 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SPIRE</title>
+  <title>fredflix</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .blocked-page {
+      background: white;
+      color: #000;
+      font-family: 'Segoe UI', Arial, sans-serif;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 20px;
+    }
+    .blocked-container {
+      max-width: 600px;
+    }
+    .briefcase {
+      font-size: 80px;
+      margin-bottom: 20px;
+      cursor: pointer;
+    }
+    .blocked-title {
+      font-size: 28px;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+    .hosted {
+      font-size: 18px;
+      margin-bottom: 30px;
+      color: #666;
+    }
+    .blocked-text {
+      font-size: 15px;
+      line-height: 1.5;
+      margin-bottom: 30px;
+      color: #333;
+    }
+    .btn-close {
+      background: #f0f0f0;
+      color: black;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    .footer {
+      margin-top: 50px;
+      font-size: 14px;
+      color: #666;
+    }
+  </style>
 </head>
 <body>
 
-  <!-- Header -->
-  <div class="header">
-    <div class="logo">julsey</div>
-    <div class="search-container">
-      <input type="text" id="searchInput" placeholder="Search movies & shows...">
+  <!-- Blocked / Login Page -->
+  <div class="blocked-page" id="blockedScreen">
+    <div class="blocked-container">
+      <div class="briefcase" onclick="enterSite()">📁</div>
+      
+      <div class="blocked-title">This content is blocked by your organisation</div>
+      <div class="hosted">Hosted by www.joeisjewish.xyz</div>
+      
+      <div class="blocked-text">
+        For your protection, your organisation is not allowing you to access<br>
+        the resource or content hosted by www.joeisjewish.xyz<br><br>
+        To learn more about why you're seeing this message or to get in<br>
+        touch with your administrator, visit the support page.
+      </div>
+
+      <button class="btn-close" onclick="closePage()">Close page</button>
+
+      <div class="footer">
+        Microsoft Defender SmartScreen
+      </div>
     </div>
   </div>
 
-  <!-- Main Content -->
-  <div id="mainContent" class="content">
-    <!-- Content loaded by script.js -->
-  </div>
-
-  <script src="script.js"></script>
-</body>
-</html>
+  <!-- Main Fredflix Site -->
+  <div id="mainSite" style="display: none
