@@ -1,4 +1,4 @@
-// script.js - Clean & Fast Continue Watching
+// script.js - Continue Watching Added (Preserves your original design)
 
 const mainContent = document.getElementById('mainContent');
 const searchInput = document.getElementById('searchInput');
@@ -18,12 +18,11 @@ function getContinueWatching() {
 }
 
 function saveContinueWatching(list) {
-  localStorage.setItem(CW_KEY, JSON.stringify(list.slice(0, 15))); // max 15 items
+  localStorage.setItem(CW_KEY, JSON.stringify(list.slice(0, 12)));
 }
 
 function addToContinueWatching(item) {
   let list = getContinueWatching();
-  // Remove old entry
   list = list.filter(i => !(i.id === item.id && i.type === item.type));
   
   list.unshift({
@@ -40,13 +39,12 @@ function addToContinueWatching(item) {
   saveContinueWatching(list);
 }
 
-// Create Card
+// Create Card with Continue Support
 function createCard(item, isContinue = false) {
   const card = document.createElement('div');
   card.className = 'card';
-  
-  const title = item.title || item.name;
-  
+  const title = item.title;
+
   card.innerHTML = `
     <div class="poster-container">
       <img src="${IMAGE_BASE}${item.poster_path || ''}" 
@@ -60,9 +58,7 @@ function createCard(item, isContinue = false) {
     </div>
     <div class="card-info">
       <h3>${title}</h3>
-      ${isContinue && item.season ? `
-        <p class="continue-info">S${item.season} E${item.episode}</p>
-      ` : ''}
+      ${isContinue && item.season ? `<p class="continue-info">S${item.season} E${item.episode}</p>` : ''}
     </div>
   `;
 
@@ -77,55 +73,49 @@ function createCard(item, isContinue = false) {
   return card;
 }
 
-// Render All Content
-function renderContent(searchTerm = '') {
+// Render Continue Watching at top
+function renderContinueWatching() {
+  const cw = getContinueWatching();
+  if (cw.length === 0) return;
+
+  const html = `
+    <h2 class="section-title">Continue Watching</h2>
+    <div class="row" id="continue-row"></div>
+  `;
+  mainContent.insertAdjacentHTML('afterbegin', html);
+
+  const row = document.getElementById('continue-row');
+  cw.forEach(item => row.appendChild(createCard(item, true)));
+}
+
+// Your original render function (modified slightly)
+async function renderRows(searchTerm = '') {
   mainContent.innerHTML = '';
-
-  const continueList = getContinueWatching();
-
-  // Continue Watching Section
-  if (continueList.length > 0 && !searchTerm) {
-    const cwSection = document.createElement('div');
-    cwSection.innerHTML = `<h2 class="section-title">Continue Watching</h2><div class="row" id="cw-row"></div>`;
-    mainContent.appendChild(cwSection);
-
-    const cwRow = document.getElementById('cw-row');
-    continueList.forEach(item => {
-      cwRow.appendChild(createCard(item, true));
-    });
+  
+  // Add Continue Watching first (only when not searching)
+  if (!searchTerm) {
+    renderContinueWatching();
   }
 
-  // Other Categories
+  // Original Trending + Categories
   const categories = [
-    { title: "Trending Now", items: [...movies.slice(0,8), ...shows.slice(0,8)] },
+    { title: "Trending Now", items: shows.slice(0, 12) },
     { title: "Action Movies", items: movies },
     { title: "Popular TV Shows", items: shows }
   ];
 
   categories.forEach(cat => {
-    let items = cat.items.filter(item => 
+    let filtered = cat.items.filter(item => 
       item.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
-    if (items.length === 0) return;
+    if (filtered.length === 0) return;
 
     const section = document.createElement('div');
     section.innerHTML = `<h2 class="section-title">${cat.title}</h2><div class="row" id="row-${cat.title.replace(/\s+/g,'')}"></div>`;
     mainContent.appendChild(section);
 
     const row = document.getElementById(`row-${cat.title.replace(/\s+/g,'')}`);
-    items.forEach(item => {
-      // Add type for navigation
-      item.type = movies.some(m => m.id === item.id) ? 'movie' : 'tv';
-      row.appendChild(createCard(item));
-    });
-  });
-}
 
-// Search
-searchInput.addEventListener('input', (e) => {
-  renderContent(e.target.value.trim());
-});
-
-// Start
-renderContent();
+    filtered.forEach(item => {
+      item
