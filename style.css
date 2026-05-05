@@ -1,4 +1,4 @@
-/* style.css - Mobile Friendly Fflix */
+/* style.css - Updated with Continue Watching Progress */
 
 * {
   margin: 0;
@@ -61,43 +61,6 @@ body {
   outline: none;
 }
 
-/* Hero */
-.hero {
-  height: 70vh;
-  min-height: 420px;
-  background: linear-gradient(rgba(20,20,20,0.6), rgba(20,20,20,0.9)),
-              url('https://image.tmdb.org/t/p/original/8cdWjvZQUExUUTzyp4t6EDMUBjM.jpg') center/cover;
-  display: flex;
-  align-items: center;
-}
-
-.hero-content {
-  margin-left: 20px;
-  max-width: 90%;
-}
-
-.hero-content h1 {
-  font-size: 2.8rem;
-  font-weight: 900;
-  margin-bottom: 10px;
-}
-
-.hero-content p {
-  font-size: 1.1rem;
-  margin-bottom: 20px;
-}
-
-.btn-primary {
-  background: #e50914;
-  color: white;
-  border: none;
-  padding: 12px 28px;
-  font-size: 1.1rem;
-  font-weight: bold;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
 /* Content */
 .content {
   padding: 20px 15px 80px;
@@ -122,11 +85,12 @@ body {
 
 /* Cards */
 .card {
-  flex: 0 0 160px;           /* Smaller on mobile */
+  flex: 0 0 160px;
   border-radius: 6px;
   overflow: hidden;
   transition: transform 0.3s;
   cursor: pointer;
+  position: relative;
 }
 
 .card:hover {
@@ -137,12 +101,30 @@ body {
   height: 240px;
   background: #1f1f1f;
   overflow: hidden;
+  position: relative;
 }
 
 .poster-container img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+/* Continue Watching Progress Bar */
+.progress-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: rgba(255,255,255,0.3);
+  overflow: hidden;
+}
+
+.progress {
+  height: 100%;
+  background: #e50914;
+  transition: width 0.3s;
 }
 
 .card-info {
@@ -158,19 +140,16 @@ body {
   text-overflow: ellipsis;
 }
 
-/* No results */
-.no-results {
-  text-align: center;
-  padding: 60px 20px;
-  font-size: 1.3rem;
-  color: #777;
+.continue-info {
+  font-size: 0.85rem;
+  color: #e50914;
+  margin-top: 4px;
 }
 
-/* Desktop improvements */
+/* Desktop */
 @media (min-width: 768px) {
   .card { flex: 0 0 220px; }
   .poster-container { height: 330px; }
-  .hero-content h1 { font-size: 4rem; }
   .header { padding: 15px 50px; }
   .search-container { max-width: 420px; }
 }
