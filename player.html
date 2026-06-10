@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cambridge HOTmaths</title>   <!-- Always shows SPIRE -->
+  <title>Cambridge HOTmaths</title>
   <style>
     body {
       margin: 0;
@@ -80,7 +80,6 @@
     let currentSeason = parseInt(params.get('season')) || 1;
     let currentEpisode = parseInt(params.get('episode')) || 1;
 
-    // Page title is always SPIRE
     document.getElementById('title').textContent = title;
 
     const videoFrame = document.getElementById('videoFrame');
@@ -114,7 +113,8 @@
     }
 
     if (type === 'movie') {
-      videoFrame.src = `https://player.videasy.net/movie/${id}?overlay=true`;
+      // SuperEmbed Movie
+      videoFrame.src = `https://multiembed.mov/?video_id=${id}&tmdb=1`;
     } else {
       tvControls.style.display = 'block';
       const episodesPerSeason = seasonData[id] || Array(8).fill(10);
@@ -150,7 +150,10 @@
       const episode = parseInt(document.getElementById('episodeSelect').value);
       currentSeason = season;
       currentEpisode = episode;
-      videoFrame.src = `https://player.videasy.net/tv/${id}/${season}/${episode}?overlay=true&nextEpisode=true&episodeSelector=true`;
+      
+      // SuperEmbed TV Episode
+      videoFrame.src = `https://multiembed.mov/?video_id=${id}&tmdb=1&s=${season}&e=${episode}`;
+      
       saveToContinueWatching();
     }
 
